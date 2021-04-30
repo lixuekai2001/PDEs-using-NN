@@ -51,7 +51,7 @@ for poly in model_ref.polys:
 
 #%%
 options_1 = {}
-options_1['--name'] = 'cdr-frozen-upwind-sparse0.005-noise0.001'
+options_1['--name'] = 'cdr-noise0.001'
 configfile_1 = 'checkpoint/'+options_1['--name']+'/options.yaml'
 options_1 = conf.setoptions(argv=None,kw=None,configfile=configfile_1,isload=True)
 if torch.cuda.is_available():
