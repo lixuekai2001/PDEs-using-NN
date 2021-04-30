@@ -66,7 +66,7 @@ callback_1.load(24)
 
 #%%
 options_2 = {}
-options_2['--name'] = 'cdr-2-upwind-sparse0.005-noise0.001'
+options_2['--name'] = 'cdr-noise0.001'
 configfile_2 = 'checkpoint/'+options_2['--name']+'/options.yaml'
 options_2 = conf.setoptions(argv=None,kw=None,configfile=configfile_2,isload=True)
 if torch.cuda.is_available():
