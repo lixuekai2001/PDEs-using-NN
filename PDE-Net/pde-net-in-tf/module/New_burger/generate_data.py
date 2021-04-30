@@ -14,7 +14,7 @@ def generate(options):
              down-sampled sub-grids for all dt-layers.
     """
 
-    # Diffusion with non-linear source-term 15*sin(u) (cf. PDE-Net)
+    # u_t + u*u_x + u*u_y = nu*(u_{xx} + u_{yy})
 
     # Variable declarations
     nx = options['mesh_size'][0]
@@ -43,11 +43,11 @@ def generate(options):
         ## Assign initial function:
         u = com.initgen(options['mesh_size'], freq=4, boundary='Periodic')
 
-        # ## Plotting the initial function:
+        ## Plotting the initial function:
         # fig = plt.figure(figsize=(11,7), dpi=100)
         # ax = fig.gca(projection='3d')
         # surf = ax.plot_surface(X, Y, u[:], cmap=cm.viridis)
-
+        #
         # plt.show()
 
         sample = {}
@@ -56,9 +56,8 @@ def generate(options):
         for n in range(nt - 1):
             un = com.pad_input_2(u, 2)[1:, 1:]  # Same triplet of numbers on each side
 
-            u = (un[1:-1,1:-1] + nu * dt / dx**2 * (un[1:-1, 2:] - 2 * un[1:-1, 1:-1] + un[1:-1, 0:-2])
-                 + nu * dt / dy**2 * (un[2:,1: -1] - 2 * un[1:-1, 1:-1] + un[0:-2, 1:-1])
-                 + dt * 15*np.sin(un[1:-1,1:-1]))[:-1, :-1]
+            u = (un[1:-1, 1:-1] + dt * (10e-2*(un[2:, 1:-1] + un[0:-2, 1:-1] - 2*un[1:-1, 1:-1]) / dx**2
+                                        - un[1:-1, 1:-1] * (un[2:, 1:-1] - un[1:-1, 1:-1]) / dx))[:-1, :-1]
 
             sample['u' + str(n+1)] = u
 
@@ -66,6 +65,14 @@ def generate(options):
         ## sample should at this point be a dictionary with entries 'u0', ..., 'uL', where L = nt                   ##
         ## For a given j, sample['uj'] is a matrix of size nx x ny containing the function values at time-step dt*j ##
         ##############################################################################################################
+
+
+        # # Plotting the function values from the last layer:
+        # fig2 = plt.figure()
+        # ax2 = fig2.gca(projection='3d')
+        # surf2 = ax2.plot_surface(X, Y, u, cmap=cm.viridis)
+        #
+        # plt.show()
 
         com.downsample(sample, downsample_by)
         com.addNoise(sample, noise_level, nt)
