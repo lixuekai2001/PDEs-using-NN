@@ -27,8 +27,8 @@ def generate(options):
 
     nu = 0.3
 
-    dx = 2*np.pi/(nx - 1)
-    dy = 2*np.pi/(ny - 1)
+    dx = 1 #2*np.pi/(nx - 1)
+    dy = 1 #2*np.pi/(ny - 1)
 
     # # Needed for plotting:
     # x = np.linspace(0, 2*np.pi, num = nx)
