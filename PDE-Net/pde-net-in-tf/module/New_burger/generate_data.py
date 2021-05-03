@@ -25,10 +25,10 @@ def generate(options):
     downsample_by = options['downsample_by']
     batch_size = options['batch_size']
 
-    nu = 0.3
+    nu = 10e-2 #0.3
 
-    dx = 1 #2*np.pi/(nx - 1)
-    dy = 1 #2*np.pi/(ny - 1)
+    dx = 2*np.pi/(nx - 1)
+    dy = 2*np.pi/(ny - 1)
 
     # # Needed for plotting:
     # x = np.linspace(0, 2*np.pi, num = nx)
@@ -56,7 +56,7 @@ def generate(options):
         for n in range(nt - 1):
             un = com.pad_input_2(u, 2)[1:, 1:]  # Same triplet of numbers on each side
 
-            u = (un[1:-1, 1:-1] + dt * (10e-2*(un[2:, 1:-1] + un[0:-2, 1:-1] - 2*un[1:-1, 1:-1]) / dx**2
+            u = (un[1:-1, 1:-1] + dt * (nu*(un[2:, 1:-1] + un[0:-2, 1:-1] - 2*un[1:-1, 1:-1]) / dx**2
                                         - un[1:-1, 1:-1] * (un[2:, 1:-1] - un[1:-1, 1:-1]) / dx))[:-1, :-1]
 
             sample['u' + str(n+1)] = u
