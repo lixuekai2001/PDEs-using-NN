@@ -1,8 +1,33 @@
-Program ran for 174 seconds
-[-0.097287245, 0.25469598, -0.07295171, 0.10255942, -0.01386513, -0.007124711, -0.039497774, -0.022844369, -0.02210988, 0.008560377]
-The factor of the non-linear term is -0.00019810 
-MSE: 20.47470405 
-Program ran for 202 seconds
-[-0.09003266, -0.23994806, 0.02117884, 0.08786339, -0.0010018954, 0.004098935, -0.01769809, -0.004435202, -0.020079762, -0.015271485]
-The factor of the non-linear term is -0.00005013 
-MSE: 20.47283300 
+Program ran for 158 seconds
+[-0.040033497, 0.039491545, 0.07032669, 0.09924224, 0.016890703, 0.0013307696]
+The factor of the non-linear term is -0.00005815 
+Program ran for 140 seconds
+[-0.17124216, -0.1991531, 0.101214044, 0.096562475, -0.0031310853, -0.0071374164]
+The factor of the non-linear term is 0.00020390 
+Program ran for 162 seconds
+[-0.12210963, 0.06332814, 0.03861828, 0.107284635, -0.0017467665, -0.014023824]
+The factor of the non-linear term is -0.00010433 
+Program ran for 223 seconds
+[-0.23869298, -0.011192408, 0.10805265, 0.10932185, -0.005423323, -0.024718892]
+The factor of the non-linear term is 0.68689716 
+Program ran for 124 seconds
+[0.0849435, -0.17711005, 0.084652916, 0.08014591, 0.0011206336, 0.02748604]
+The factor of the non-linear term is -0.00031896 
+Program ran for 111 seconds
+[0.00838689, 0.11404591, 0.049220268, 0.10739111, 0.007574119, 0.0004589565]
+The factor of the non-linear term is 0.00020052 
+Program ran for 130 seconds
+[-0.12069525, 0.040275652, -0.06409507, 0.09701932, 0.0024482757, -0.006132401]
+The factor of the non-linear term is 0.00004062 
+Program ran for 125 seconds
+[-0.26084927, -0.07791804, -0.008969471, 0.085646786, -4.5071924e-05, -0.009121536]
+The factor of the non-linear term is -0.00028532 
+Program ran for 138 seconds
+[-0.15187703, -0.017395604, -0.03947823, 0.1044952, 0.018600095, -0.007786102]
+The factor of the non-linear term is 0.00006643 
+Program ran for 129 seconds
+[0.15737173, -0.035649806, -0.01869646, 0.10451579, 0.013882499, 0.013300171]
+The factor of the non-linear term is 0.00013911 
+Program ran for 111 seconds
+[-0.4153955, -0.0008243039, -0.06198794, 0.09158148, -0.0025034759, -0.01666239]
+The factor of the non-linear term is 0.00026235 

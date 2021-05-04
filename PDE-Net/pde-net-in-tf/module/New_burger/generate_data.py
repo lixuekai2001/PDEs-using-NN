@@ -56,8 +56,8 @@ def generate(options):
         for n in range(nt - 1):
             un = com.pad_input_2(u, 2)[1:, 1:]  # Same triplet of numbers on each side
 
-            u = (un[1:-1, 1:-1] + dt * (nu*(un[2:, 1:-1] + un[0:-2, 1:-1] - 2*un[1:-1, 1:-1]) / dx**2
-                                        - un[1:-1, 1:-1] * (un[2:, 1:-1] - un[1:-1, 1:-1]) / dx))[:-1, :-1]
+            u  = (un[1:-1, 1:-1] - dt/dx * (un[1:-1, 1:-1] *(un[1:-1, 1:-1] - un[2:, 1:-1])) +
+                  nu* dt/dx**2 * (un[0:-2,1:-1]-2*un[1:-1,1:-1]+un[2:,1:-1]))[:-1, :-1]
 
             sample['u' + str(n+1)] = u
 

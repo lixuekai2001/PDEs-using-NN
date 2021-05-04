@@ -11,11 +11,11 @@ options = {'mesh_size': [250, 250],     # How large is the (regular) 2D-grid of 
            'downsample_by': 5,          # Size of sub-grids (in space) * downsample_by = mesh_size
            'filter_size': 7,            # Size of filters to approximate derivatives via FD. Must be an odd number!
            'iterations': 5,             # How often to repeat optimization in the warmup-step
-           'max_order': 3,              # Max-order of our hidden PDE. Note: max_order < filter_size!
+           'max_order': 2,              # Max-order of our hidden PDE. Note: max_order < filter_size!
            'boundary_cond': 'PERIODIC'  # Set to 'PERIODIC' if data has periodic bdry condition to use periodic padding
            }
 
-for q in range(2):
+for q in range(10 ):
 
     t0 = time.time()
 
@@ -41,8 +41,8 @@ for q in range(2):
         file.write('Program ran for %d seconds' % (time.time() - t0))
         file.write('\n' + str(coefs) + '\n')
         file.write('The factor of the non-linear term is %.8f \n' % param)
-        file.write('MSE: %.8f \n' % (1/11*(coefs[0] ** 2 + coefs[1] ** 2 + coefs[2] ** 2 + (coefs[3] - 0.3) ** 2
-                                      + coefs[4] ** 2 + (coefs[5] - 0.3) ** 2 + coefs[6] ** 2 + coefs[7] ** 2
-                                      + coefs[8] ** 2 + coefs[9] ** 2 + (param - 15) ** 2)))
+        # file.write('MSE: %.8f \n' % (1/11*(coefs[0] ** 2 + coefs[1] ** 2 + coefs[2] ** 2 + (coefs[3] - 0.3) ** 2
+        #                               + coefs[4] ** 2 + (coefs[5] - 0.3) ** 2 + coefs[6] ** 2 + coefs[7] ** 2
+        #                               + coefs[8] ** 2 + coefs[9] ** 2 + (param - 15) ** 2)))
 
     tf.reset_default_graph()
