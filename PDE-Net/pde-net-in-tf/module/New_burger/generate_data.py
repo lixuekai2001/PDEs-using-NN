@@ -24,7 +24,8 @@ def generate(options):
     noise_level = options['noise_level']
     downsample_by = options['downsample_by']
     batch_size = options['batch_size']
-
+    a = 1
+    b = 0
     nu = 10e-2 #0.3
 
     dx = 2*np.pi/(nx - 1)
@@ -56,8 +57,13 @@ def generate(options):
         for n in range(nt - 1):
             un = com.pad_input_2(u, 2)[1:, 1:]  # Same triplet of numbers on each side
 
-            u  = (un[1:-1, 1:-1] - dt/dx * (un[1:-1, 1:-1] *(un[1:-1, 1:-1] - un[2:, 1:-1])) +
-                  nu* dt/dx**2 * (un[0:-2,1:-1]-2*un[1:-1,1:-1]+un[2:,1:-1]))[:-1, :-1]
+            u  = (
+                un[1:-1, 1:-1] - 
+                a * (dt/dx * (un[1:-1, 1:-1] *(un[1:-1, 1:-1] - un[2:, 1:-1]))) -
+                b * (dt/dy * (un[1:-1, 1:-1] *(un[1:-1, 1:-1] - un[1:-1, 2:]))) +
+                a * (nu * dt/dx**2 * (un[0:-2,1:-1]-2*un[1:-1,1:-1]+un[2:,1:-1]))+
+                b * (nu * dt/dy**2 * (un[1:-1,0:-2]-2*un[1:-1,1:-1]+un[1:-1,2:]))
+                )[:-1, :-1]
 
             sample['u' + str(n+1)] = u
 
