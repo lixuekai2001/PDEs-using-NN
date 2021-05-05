@@ -1,7 +1,7 @@
 import numpy as np
 from numpy import linalg as LA
 from numpy.linalg import norm as Norm
-from parametric_pde_find import TrainSGTRidge
+# from parametric_pde_find import TrainSGTRidge
 import scipy.sparse as sparse
 from scipy.sparse import csc_matrix
 from scipy.sparse import dia_matrix

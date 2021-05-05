@@ -21,15 +21,15 @@ dt = t[1]-t[0]
 dx = x[2]-x[1]
 
 
-#X, T = np.meshgrid(x, t)
-#fig1 = plt.figure()
-#ax = fig1.gca(projection='3d')
-#surf = ax.plot_surface(X, T, u.T, rstride=1, cstride=1, cmap=plt.cm.coolwarm,
-#    linewidth=0, antialiased=False)
-#plt.title('Burgers Equation', fontsize = 20)
-#plt.xlabel('x', fontsize = 16)
-#plt.ylabel('t', fontsize = 16)
-#plt.show()
+X, T = np.meshgrid(x, t)
+fig1 = plt.figure()
+ax = fig1.gca(projection='3d')
+surf = ax.plot_surface(X, T, u.T, rstride=1, cstride=1, cmap=plt.cm.coolwarm,
+   linewidth=0, antialiased=False)
+plt.title('Burgers Equation', fontsize = 20)
+plt.xlabel('x', fontsize = 16)
+plt.ylabel('t', fontsize = 16)
+plt.show()
 
 
 
@@ -49,7 +49,7 @@ print(" ")
 
 
 
-# # Solve with RPCA + STR
+# Solve with RPCA + STR
 # nx,nt = 256, 101
 # Z, E1 = RobustPCA(u, lam_2 = 0.3)
 # Ut, R, rhs_des = build_linear_system(Z, dt, dx, D=3, P=3, time_diff = 'FD', space_diff = 'FD')
