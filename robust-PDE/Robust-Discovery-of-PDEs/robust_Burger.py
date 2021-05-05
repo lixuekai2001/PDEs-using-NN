@@ -3,7 +3,7 @@
 #% pylab inline
 
 import pylab
-pylab.rcParams['figure.figsize'] = (12, 8)
+# pylab.rcParams['figure.figsize'] = (12, 8)
 import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
 from robust_PDE_FIND import build_linear_system, TrainSTRidge, compute_err, print_pde, RobustPCA, Robust_LRSTR
