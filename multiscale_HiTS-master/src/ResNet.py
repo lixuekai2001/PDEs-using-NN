@@ -254,6 +254,7 @@ def vectorized_multi_scale_forecast(x_init, n_steps, models):
     # we assume models are sorted by their step sizes (decreasing order)
     n_test, n_dim = x_init.shape
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    print('The device is ,',device)
     indices = list()
     extended_n_steps = n_steps + models[0].step_size
     preds = torch.zeros(n_test, extended_n_steps + 1, n_dim).float().to(device)
@@ -267,7 +268,7 @@ def vectorized_multi_scale_forecast(x_init, n_steps, models):
         y_prev = preds[:, indices, :].reshape(-1, n_dim)
         indices_lists = [indices]
         for t in range(n_forward):
-            y_next = model(y_prev)
+            y_next = model(y_prev).to(device)
             shifted_indices = [x + (t + 1) * model.step_size for x in indices]
             indices_lists.append(shifted_indices)
             preds[:, shifted_indices, :] = y_next.reshape(n_test, -1, n_dim)
@@ -280,7 +281,7 @@ def vectorized_multi_scale_forecast(x_init, n_steps, models):
     y_prev = preds[:, last_idx, :]
     while last_idx < n_steps:
         last_idx += models[-1].step_size
-        y_next = models[-1](y_prev)
+        y_next = models[-1](y_prev).to(device)
         preds[:, last_idx, :] = y_next
         indices.append(last_idx)
         y_prev = y_next
@@ -289,8 +290,8 @@ def vectorized_multi_scale_forecast(x_init, n_steps, models):
     sample_steps = range(1, n_steps+1)
     valid_preds = preds[:, indices, :].detach().numpy()
     cs = scipy.interpolate.interp1d(indices, valid_preds, kind='linear', axis=1)
-    y_preds = torch.tensor(cs(sample_steps)).float()
-
+    y_preds = torch.tensor(cs(sample_steps)).float().to(device)
+    print(y_preds.is_cuda)
     return y_preds
 
 
