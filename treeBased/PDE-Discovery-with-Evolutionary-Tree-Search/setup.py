@@ -30,7 +30,7 @@ random.seed(rand)
 data = scio.loadmat('./data/burgers.mat')
 u = np.real(data['usol'])
 x = np.real(data['x'][0])
-t = np.real(data['t'])[0,:]
+t = np.real(data['t'])[:,0]
 n, m = u.shape
 dt = t[1]-t[0]
 dx = x[2]-x[1]
