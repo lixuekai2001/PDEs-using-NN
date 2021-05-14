@@ -264,10 +264,13 @@ def vectorized_multi_scale_forecast(x_init, n_steps, models):
     preds[:, 0, :] = x_init
     total_step_sizes = n_steps
     for model in models:
+        torch.cuda.empty_cache()
+        model = model.to(device)
         n_forward = int(total_step_sizes/model.step_size)
         y_prev = preds[:, indices, :].reshape(-1, n_dim)
         indices_lists = [indices]
         for t in range(n_forward):
+            print(y_prev.is_cuda)
             y_next = model(y_prev).to(device)
             shifted_indices = [x + (t + 1) * model.step_size for x in indices]
             indices_lists.append(shifted_indices)
