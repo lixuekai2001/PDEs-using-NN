@@ -270,7 +270,7 @@ def vectorized_multi_scale_forecast(x_init, n_steps, models):
         y_prev = preds[:, indices, :].reshape(-1, n_dim)
         indices_lists = [indices]
         for t in range(n_forward):
-            print(y_prev.is_cuda)
+            # print(y_prev.is_cuda)
             y_next = model(y_prev).to(device)
             shifted_indices = [x + (t + 1) * model.step_size for x in indices]
             indices_lists.append(shifted_indices)
@@ -294,7 +294,7 @@ def vectorized_multi_scale_forecast(x_init, n_steps, models):
     valid_preds = preds[:, indices, :].detach().numpy()
     cs = scipy.interpolate.interp1d(indices, valid_preds, kind='linear', axis=1)
     y_preds = torch.tensor(cs(sample_steps)).float().to(device)
-    print(y_preds.is_cuda)
+    # print(y_preds.is_cuda)
     return y_preds
 
 
