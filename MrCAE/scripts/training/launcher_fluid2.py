@@ -13,9 +13,11 @@ import torch_cae_multilevel_V4 as net
 
 # paths
 map_path = None
-data_path = '../../data/npy/channel_flow2.npy'
-model_path = '/usr/workspace/wsb/liu73/model/fluid2/'
-result_path = '/usr/workspace/wsb/liu73/result/fluid2/'
+data_path = 'data/npy/'#channel_flow2.npy
+model_path = 'model'
+#'/usr/workspace/wsb/liu73/model/fluid2/'
+result_path =  'result'
+#'/usr/workspace/wsb/liu73/result/fluid2/'
 load_model_path = None  # enable this and use option 2/3 to resume training
 
 # load data, model & train
