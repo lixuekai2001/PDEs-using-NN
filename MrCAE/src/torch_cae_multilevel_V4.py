@@ -271,7 +271,8 @@ class CAE(torch.nn.Module):
         """
         # prepare data at this level
         train_data, val_data, _ = dataset.obtain_data_at_current_level(self.cur_level)
-
+        print('Train data:',train_data.shape)
+        print('val data',val_data.shape)
         # specify optimizer
         optimizer = torch.optim.Adam(self.parameters(), lr=lr, eps=1e-3, weight_decay=1e-5)
         criterion = torch.nn.MSELoss(reduction='none')
@@ -521,6 +522,7 @@ def train_net_one_stage(mode, n_filters, dataset, max_epoch, batch_size, result_
     :param verbose: verbose level
     :return: new model
     """
+    print(mode)
     # collectors
     if load_model is None or result_path is None:
         final_arch = list()

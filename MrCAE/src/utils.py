@@ -5,7 +5,7 @@ import torch
 class MultiScaleDynamicsDataSet():
     def __init__(self, data_path, n_levels, map_path=None, train_ratio=0.7, valid_ratio=0.2):
         # load data
-        data = np.load(data_path)
+        data = np.load(data_path,allow_pickle=True)
         self.data = torch.tensor(data).unsqueeze(1).float()
         #
         if map_path is not None:
